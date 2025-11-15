@@ -16,9 +16,10 @@ const createWrapper = () => {
       mutations: { retry: false },
     },
   })
-  return ({ children }: { children: React.ReactNode }) => (
-    <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
-  )
+  function Wrapper({ children }: { children: React.ReactNode }) {
+    return React.createElement(QueryClientProvider, { client: queryClient }, children)
+  }
+  return Wrapper
 }
 
 describe('useCanciones Hook', () => {
@@ -32,8 +33,8 @@ describe('useCanciones Hook', () => {
     })
 
     expect(result.current).toHaveProperty('canciones')
-    expect(result.current).toHaveProperty('isLoading')
-    expect(result.current).toHaveProperty('error')
+    expect(result.current.canciones).toHaveProperty('isLoading')
+    expect(result.current.canciones).toHaveProperty('error')
   })
 
   it('debe manejar el estado de carga correctamente', () => {
@@ -41,6 +42,6 @@ describe('useCanciones Hook', () => {
       wrapper: createWrapper(),
     })
 
-    expect(result.current.isLoading).toBeDefined()
+    expect(result.current.canciones.isLoading).toBeDefined()
   })
 })

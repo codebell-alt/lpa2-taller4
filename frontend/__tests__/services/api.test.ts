@@ -4,40 +4,48 @@
  */
 
 import { describe, it, expect, beforeEach, vi } from 'vitest'
-import axios from 'axios'
-import { getUsuarios, createUsuario } from '@/services/usuarios.service'
-import { getCanciones, createCancion } from '@/services/canciones.service'
+import { usuariosService } from '@/services/usuarios.service'
+import { cancionesService } from '@/services/canciones.service'
+import { api } from '@/lib/api'
 
-vi.mock('axios')
+vi.mock('@/lib/api', () => ({
+  api: {
+    get: vi.fn(),
+    post: vi.fn(),
+    put: vi.fn(),
+    delete: vi.fn(),
+  },
+}))
 
 describe('Usuarios Service', () => {
   beforeEach(() => {
     vi.clearAllMocks()
   })
 
-  it('getUsuarios debe llamar al endpoint correcto', async () => {
+  it('getAll debe llamar al endpoint correcto', async () => {
     const mockData = { items: [], total: 0, page: 1, size: 10, pages: 0 }
-    vi.mocked(axios.get).mockResolvedValue({ data: mockData })
+    vi.mocked(api.get).mockResolvedValue({ data: mockData })
 
-    const result = await getUsuarios()
+    const result = await usuariosService.getAll()
 
-    expect(axios.get).toHaveBeenCalledWith(
-      expect.stringContaining('/api/usuarios'),
-      expect.any(Object)
+    expect(api.get).toHaveBeenCalledWith(
+      '/api/usuarios/',
+      expect.objectContaining({
+        params: expect.objectContaining({ page: 1, size: 10 })
+      })
     )
+    expect(result).toEqual(mockData)
   })
 
-  it('createUsuario debe enviar los datos correctamente', async () => {
+  it('create debe enviar los datos correctamente', async () => {
     const mockUsuario = { nombre: 'Test', correo: 'test@test.com' }
     const mockResponse = { id: 1, ...mockUsuario, fecha_registro: '2024-01-01' }
-    vi.mocked(axios.post).mockResolvedValue({ data: mockResponse })
+    vi.mocked(api.post).mockResolvedValue({ data: mockResponse })
 
-    const result = await createUsuario(mockUsuario)
+    const result = await usuariosService.create(mockUsuario)
 
-    expect(axios.post).toHaveBeenCalledWith(
-      expect.stringContaining('/api/usuarios'),
-      mockUsuario
-    )
+    expect(api.post).toHaveBeenCalledWith('/api/usuarios/', mockUsuario)
+    expect(result).toEqual(mockResponse)
   })
 })
 
@@ -46,19 +54,22 @@ describe('Canciones Service', () => {
     vi.clearAllMocks()
   })
 
-  it('getCanciones debe llamar al endpoint correcto', async () => {
+  it('getAll debe llamar al endpoint correcto', async () => {
     const mockData = { items: [], total: 0, page: 1, size: 10, pages: 0 }
-    vi.mocked(axios.get).mockResolvedValue({ data: mockData })
+    vi.mocked(api.get).mockResolvedValue({ data: mockData })
 
-    const result = await getCanciones()
+    const result = await cancionesService.getAll()
 
-    expect(axios.get).toHaveBeenCalledWith(
-      expect.stringContaining('/api/canciones'),
-      expect.any(Object)
+    expect(api.get).toHaveBeenCalledWith(
+      '/api/canciones/',
+      expect.objectContaining({
+        params: expect.objectContaining({ page: 1, size: 10 })
+      })
     )
+    expect(result).toEqual(mockData)
   })
 
-  it('createCancion debe enviar los datos correctamente', async () => {
+  it('create debe enviar los datos correctamente', async () => {
     const mockCancion = {
       titulo: 'Test Song',
       artista: 'Test Artist',
@@ -68,13 +79,11 @@ describe('Canciones Service', () => {
       genero: 'Rock'
     }
     const mockResponse = { id: 1, ...mockCancion, fecha_creacion: '2024-01-01' }
-    vi.mocked(axios.post).mockResolvedValue({ data: mockResponse })
+    vi.mocked(api.post).mockResolvedValue({ data: mockResponse })
 
-    const result = await createCancion(mockCancion)
+    const result = await cancionesService.create(mockCancion)
 
-    expect(axios.post).toHaveBeenCalledWith(
-      expect.stringContaining('/api/canciones'),
-      mockCancion
-    )
+    expect(api.post).toHaveBeenCalledWith('/api/canciones/', mockCancion)
+    expect(result).toEqual(mockResponse)
   })
 })

@@ -16,9 +16,10 @@ const createWrapper = () => {
       mutations: { retry: false },
     },
   })
-  return ({ children }: { children: React.ReactNode }) => (
-    <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
-  )
+  function Wrapper({ children }: { children: React.ReactNode }) {
+    return React.createElement(QueryClientProvider, { client: queryClient }, children)
+  }
+  return Wrapper
 }
 
 describe('useUsuarios Hook', () => {
@@ -32,8 +33,8 @@ describe('useUsuarios Hook', () => {
     })
 
     expect(result.current).toHaveProperty('usuarios')
-    expect(result.current).toHaveProperty('isLoading')
-    expect(result.current).toHaveProperty('error')
+    expect(result.current.usuarios).toHaveProperty('isLoading')
+    expect(result.current.usuarios).toHaveProperty('error')
   })
 
   it('debe manejar el estado de carga correctamente', () => {
@@ -41,6 +42,6 @@ describe('useUsuarios Hook', () => {
       wrapper: createWrapper(),
     })
 
-    expect(result.current.isLoading).toBeDefined()
+    expect(result.current.usuarios.isLoading).toBeDefined()
   })
 })
