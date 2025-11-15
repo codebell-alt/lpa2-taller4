@@ -8,6 +8,12 @@ Email: isabella315784@gmail.com
 
 ---
 
+## 📖 Documentación
+
+**Documentación completa en línea:** [https://codebell-alt.github.io/lpa2-taller4](https://codebell-alt.github.io/lpa2-taller4)
+
+---
+
 ## Descripción
 
 Proyecto completo de gestión de música desarrollado con FastAPI en el backend y Next.js en el frontend. Incluye CRUD completo de usuarios, canciones y sistema de favoritos, con pruebas automatizadas, documentación completa y precommits configurados.
