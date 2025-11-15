@@ -2,9 +2,9 @@ import { api } from '@/lib/api';
 import type { Favorito, FavoritoInput, PaginatedResponse, Estadisticas } from '@/types';
 
 export const favoritosService = {
-  getAll: async (skip = 0, limit = 10): Promise<PaginatedResponse<Favorito>> => {
+  getAll: async (page = 1, size = 10): Promise<PaginatedResponse<Favorito>> => {
     const { data } = await api.get<PaginatedResponse<Favorito>>('/api/favoritos/', {
-      params: { skip, limit },
+      params: { page, size },
     });
     return data;
   },

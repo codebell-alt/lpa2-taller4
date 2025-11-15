@@ -2,9 +2,9 @@ import { api } from '@/lib/api';
 import type { Usuario, UsuarioInput, PaginatedResponse, Estadisticas } from '@/types';
 
 export const usuariosService = {
-  getAll: async (skip = 0, limit = 10): Promise<PaginatedResponse<Usuario>> => {
+  getAll: async (page = 1, size = 10): Promise<PaginatedResponse<Usuario>> => {
     const { data } = await api.get<PaginatedResponse<Usuario>>('/api/usuarios/', {
-      params: { skip, limit },
+      params: { page, size },
     });
     return data;
   },

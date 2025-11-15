@@ -2,8 +2,8 @@ import { api } from '@/lib/api';
 import type { Cancion, CancionInput, PaginatedResponse, Estadisticas } from '@/types';
 
 interface CancionFilters {
-  skip?: number;
-  limit?: number;
+  page?: number;
+  size?: number;
   genero?: string;
   artista?: string;
   año_min?: number;
@@ -13,7 +13,7 @@ interface CancionFilters {
 export const cancionesService = {
   getAll: async (filters: CancionFilters = {}): Promise<PaginatedResponse<Cancion>> => {
     const { data } = await api.get<PaginatedResponse<Cancion>>('/api/canciones/', {
-      params: { skip: 0, limit: 10, ...filters },
+      params: { page: 1, size: 10, ...filters },
     });
     return data;
   },
