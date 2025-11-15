@@ -8,7 +8,7 @@ import pytest
 import requests
 from typing import Dict, Any
 
-BASE_URL = "http://localhost:3000"
+BASE_URL = "http://localhost:3001"
 
 
 class TestHealthEndpoints:
