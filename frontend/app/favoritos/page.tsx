@@ -59,12 +59,11 @@ export default function FavoritosPage() {
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
   const [deletingId, setDeletingId] = useState<number | null>(null);
 
-  const limit = 10;
-  const skip = (page - 1) * limit;
+  const size = 10;
 
-  const { query, createMutation, deleteMutation } = useFavoritos(
-    skip,
-    limit,
+  const { favoritos, createMutation, deleteMutation } = useFavoritos(
+    page,
+    size,
     userFilter
   );
   const { data: usuarios } = useUsuariosSelect();
@@ -131,18 +130,18 @@ export default function FavoritosPage() {
           </div>
         </div>
 
-        {query.isLoading && <LoadingSpinner />}
+        {favoritos.isLoading && <LoadingSpinner />}
 
-        {query.isError && (
+        {favoritos.isError && (
           <ErrorMessage
             message="Error al cargar favoritos. Verifica que la API esté funcionando."
-            onRetry={() => query.refetch()}
+            onRetry={() => favoritos.refetch()}
           />
         )}
 
-        {!query.isLoading &&
-          !query.isError &&
-          (query.data?.items.length || 0) === 0 && (
+        {!favoritos.isLoading &&
+          !favoritos.isError &&
+          (favoritos.data?.items.length || 0) === 0 && (
             <EmptyState
               title={
                 userFilter
@@ -162,9 +161,9 @@ export default function FavoritosPage() {
             />
           )}
 
-        {!query.isLoading &&
-          !query.isError &&
-          (query.data?.items.length || 0) > 0 && (
+        {!favoritos.isLoading &&
+          !favoritos.isError &&
+          (favoritos.data?.items.length || 0) > 0 && (
             <>
               <div className="border rounded-lg">
                 <Table>
@@ -180,7 +179,7 @@ export default function FavoritosPage() {
                     </TableRow>
                   </TableHeader>
                   <TableBody>
-                    {query.data?.items.map((favorito) => (
+                    {favoritos.data?.items.map((favorito) => (
                       <TableRow key={favorito.id}>
                         <TableCell className="font-medium">
                           {favorito.usuario?.nombre || `Usuario #${favorito.id_usuario}`}
@@ -220,10 +219,10 @@ export default function FavoritosPage() {
                 </Table>
               </div>
 
-              {!userFilter && query.data && (
+              {!userFilter && favoritos.data && (
                 <Pagination
                   currentPage={page}
-                  totalPages={query.data.pages}
+                  totalPages={favoritos.data.pages}
                   onPageChange={setPage}
                 />
               )}

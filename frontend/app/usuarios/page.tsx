@@ -49,17 +49,16 @@ export default function UsuariosPage() {
   const [editingUsuario, setEditingUsuario] = useState<Usuario | null>(null);
   const [deletingId, setDeletingId] = useState<number | null>(null);
 
-  const limit = 10;
-  const skip = (page - 1) * limit;
+  const size = 10;
 
-  const { query, createMutation, updateMutation, deleteMutation } = useUsuarios(
-    skip,
-    limit
+  const { usuarios, createMutation, updateMutation, deleteMutation } = useUsuarios(
+    page,
+    size
   );
   const searchQuery = useSearchUsuarios(searchEmail);
 
   const displayData =
-    searchEmail && searchQuery.data ? searchQuery.data : query.data?.items || [];
+    searchEmail && searchQuery.data ? searchQuery.data : usuarios.data?.items || [];
   const isSearching = searchEmail.length > 0;
 
   const handleCreate = async (data: UsuarioInput) => {
@@ -108,16 +107,16 @@ export default function UsuariosPage() {
           </Button>
         </div>
 
-        {query.isLoading && <LoadingSpinner />}
+        {usuarios.isLoading && <LoadingSpinner />}
 
-        {query.isError && (
+        {usuarios.isError && (
           <ErrorMessage
             message="Error al cargar usuarios. Verifica que la API esté funcionando."
-            onRetry={() => query.refetch()}
+            onRetry={() => usuarios.refetch()}
           />
         )}
 
-        {!query.isLoading && !query.isError && displayData.length === 0 && (
+        {!usuarios.isLoading && !usuarios.isError && displayData.length === 0 && (
           <EmptyState
             title={
               isSearching
@@ -140,7 +139,7 @@ export default function UsuariosPage() {
           />
         )}
 
-        {!query.isLoading && !query.isError && displayData.length > 0 && (
+        {!usuarios.isLoading && !usuarios.isError && displayData.length > 0 && (
           <>
             <div className="border rounded-lg">
               <Table>
@@ -186,10 +185,10 @@ export default function UsuariosPage() {
               </Table>
             </div>
 
-            {!isSearching && query.data && (
+            {!isSearching && usuarios.data && (
               <Pagination
                 currentPage={page}
-                totalPages={query.data.pages}
+                totalPages={usuarios.data.pages}
                 onPageChange={setPage}
               />
             )}

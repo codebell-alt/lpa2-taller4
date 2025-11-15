@@ -45,19 +45,19 @@ export default function DashboardPage() {
             <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 mb-8">
               <StatCard
                 title="Total Usuarios"
-                value={usuarios.data?.total || 0}
+                value={(usuarios.data as any)?.total_usuarios || 0}
                 icon={Users}
                 gradient="bg-gradient-to-br from-blue-500/10 to-purple-500/10"
               />
               <StatCard
                 title="Total Canciones"
-                value={canciones.data?.total || 0}
+                value={(canciones.data as any)?.total_canciones || 0}
                 icon={Music}
                 gradient="bg-gradient-to-br from-purple-500/10 to-pink-500/10"
               />
               <StatCard
                 title="Total Favoritos"
-                value={favoritos.data?.total || 0}
+                value={(favoritos.data as any)?.total_favoritos || 0}
                 icon={Heart}
                 gradient="bg-gradient-to-br from-pink-500/10 to-red-500/10"
               />

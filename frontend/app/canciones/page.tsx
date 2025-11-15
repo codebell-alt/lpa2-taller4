@@ -69,12 +69,12 @@ export default function CancionesPage() {
     ...(filters.año_max && { año_max: parseInt(filters.año_max) }),
   };
 
-  const { query, createMutation, updateMutation, deleteMutation } =
+  const { canciones, createMutation, updateMutation, deleteMutation } =
     useCanciones(queryFilters);
   const searchQuery = useSearchCanciones(searchTitulo, undefined);
 
   const displayData =
-    searchTitulo && searchQuery.data ? searchQuery.data : query.data?.items || [];
+    searchTitulo && searchQuery.data ? searchQuery.data : canciones.data?.items || [];
   const isSearching = searchTitulo.length > 0;
 
   const handleCreate = async (data: CancionInput) => {
@@ -163,16 +163,16 @@ export default function CancionesPage() {
           />
         )}
 
-        {query.isLoading && <LoadingSpinner />}
+        {canciones.isLoading && <LoadingSpinner />}
 
-        {query.isError && (
+        {canciones.isError && (
           <ErrorMessage
             message="Error al cargar canciones. Verifica que la API esté funcionando."
-            onRetry={() => query.refetch()}
+            onRetry={() => canciones.refetch()}
           />
         )}
 
-        {!query.isLoading && !query.isError && displayData.length === 0 && (
+        {!canciones.isLoading && !canciones.isError && displayData.length === 0 && (
           <EmptyState
             title={
               isSearching
@@ -195,7 +195,7 @@ export default function CancionesPage() {
           />
         )}
 
-        {!query.isLoading && !query.isError && displayData.length > 0 && (
+        {!canciones.isLoading && !canciones.isError && displayData.length > 0 && (
           <>
             <div className="border rounded-lg">
               <Table>
@@ -249,10 +249,10 @@ export default function CancionesPage() {
               </Table>
             </div>
 
-            {!isSearching && query.data && (
+            {!isSearching && canciones.data && (
               <Pagination
                 currentPage={page}
-                totalPages={query.data.pages}
+                totalPages={canciones.data.pages}
                 onPageChange={setPage}
               />
             )}
