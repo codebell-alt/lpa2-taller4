@@ -5,23 +5,31 @@ import { cancionesService } from '@/services/canciones.service';
 import type { FavoritoInput } from '@/types';
 import toast from 'react-hot-toast';
 
-export function useFavoritos(skip = 0, limit = 10, userId?: number) {
+export function useFavoritos(page = 1, size = 10, userId?: number) {
   const queryClient = useQueryClient();
 
-  const query = useQuery({
-    queryKey: ['favoritos', skip, limit, userId],
+  // Obtener todos los favoritos con paginación
+  const favoritos = useQuery({
+    queryKey: ['favoritos', page, size, userId],
     queryFn: async () => {
+      // Si se proporciona userId, obtener favoritos específicos del usuario
       if (userId) {
-        const items = await favoritosService.getByUser(userId);
-        return {
-          items,
-          total: items.length,
-          page: 1,
-          size: items.length,
-          pages: 1,
-        };
+        try {
+          const favoritos = await favoritosService.getByUser(userId);
+          // Convertir array a formato paginado
+          return {
+            items: favoritos,
+            total: favoritos.length,
+            page: 1,
+            size: favoritos.length,
+            pages: 1
+          };
+        } catch (error) {
+          console.error('Error al obtener favoritos del usuario:', error);
+          throw error;
+        }
       }
-      return favoritosService.getAll(skip, limit);
+      return favoritosService.getAll(page, size);
     },
   });
 
@@ -50,7 +58,7 @@ export function useFavoritos(skip = 0, limit = 10, userId?: number) {
   });
 
   return {
-    query,
+    favoritos,
     createMutation,
     deleteMutation,
   };
@@ -60,7 +68,7 @@ export function useUsuariosSelect() {
   return useQuery({
     queryKey: ['usuarios-all'],
     queryFn: async () => {
-      const response = await usuariosService.getAll(0, 1000);
+      const response = await usuariosService.getAll(1, 1000);
       return response.items;
     },
   });
@@ -70,7 +78,7 @@ export function useCancionesSelect() {
   return useQuery({
     queryKey: ['canciones-all'],
     queryFn: async () => {
-      const response = await cancionesService.getAll({ skip: 0, limit: 1000 });
+      const response = await cancionesService.getAll({ page: 1, size: 1000 });
       return response.items;
     },
   });

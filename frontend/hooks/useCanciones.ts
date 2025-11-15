@@ -3,19 +3,21 @@ import { cancionesService } from '@/services/canciones.service';
 import type { CancionInput } from '@/types';
 import toast from 'react-hot-toast';
 
-interface UseCancionesFilters {
-  skip?: number;
-  limit?: number;
+interface CancionFilters {
+  page?: number;
+  size?: number;
   genero?: string;
   artista?: string;
   año_min?: number;
   año_max?: number;
 }
 
+type UseCancionesFilters = CancionFilters;
+
 export function useCanciones(filters: UseCancionesFilters = {}) {
   const queryClient = useQueryClient();
 
-  const query = useQuery({
+  const canciones = useQuery({
     queryKey: ['canciones', filters],
     queryFn: () => cancionesService.getAll(filters),
   });
@@ -57,7 +59,7 @@ export function useCanciones(filters: UseCancionesFilters = {}) {
   });
 
   return {
-    query,
+    canciones,
     createMutation,
     updateMutation,
     deleteMutation,

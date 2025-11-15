@@ -3,12 +3,13 @@ import { usuariosService } from '@/services/usuarios.service';
 import type { UsuarioInput } from '@/types';
 import toast from 'react-hot-toast';
 
-export function useUsuarios(skip = 0, limit = 10) {
+export function useUsuarios(page = 1, size = 10) {
   const queryClient = useQueryClient();
 
-  const query = useQuery({
-    queryKey: ['usuarios', skip, limit],
-    queryFn: () => usuariosService.getAll(skip, limit),
+  // Obtener todos los usuarios con paginación
+  const usuarios = useQuery({
+    queryKey: ['usuarios', page, size],
+    queryFn: () => usuariosService.getAll(page, size),
   });
 
   const createMutation = useMutation({
@@ -48,7 +49,7 @@ export function useUsuarios(skip = 0, limit = 10) {
   });
 
   return {
-    query,
+    usuarios,
     createMutation,
     updateMutation,
     deleteMutation,
