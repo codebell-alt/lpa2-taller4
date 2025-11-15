@@ -10,10 +10,11 @@ export function Footer() {
           </p>
           <div className="flex items-center gap-4">
             <a
-              href="https://github.com"
+              href="https://github.com/codebell-alt/lpa2-taller4"
               target="_blank"
               rel="noopener noreferrer"
               className="text-muted-foreground hover:text-foreground transition-colors"
+              title="Ver repositorio en GitHub"
             >
               <Github className="h-5 w-5" />
             </a>
