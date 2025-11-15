@@ -1,0 +1,373 @@
+[
+  {
+    "endpoint": "http://localhost:3000/api/usuarios/",
+    "metodo": "GET",
+    "descripcion": "Listar usuarios con paginación",
+    "query_params": ["skip", "limit"],
+    "body_request": null,
+    "body_response": {
+      "items": [],
+      "total": 0,
+      "page": 1,
+      "size": 100,
+      "pages": 0
+    },
+    "errores": {"404": "Usuario no encontrado", "422": "Error de validación"}
+  },
+  {
+    "endpoint": "http://localhost:3000/api/usuarios/",
+    "metodo": "POST",
+    "descripcion": "Crear usuario",
+    "body_request": {
+      "nombre": "string",
+      "correo": "string"
+    },
+    "body_response": {
+      "id": 0,
+      "nombre": "string",
+      "correo": "string",
+      "fecha_registro": "string"
+    },
+    "errores": {"404": "Usuario no encontrado", "422": "Error de validación"}
+  },
+  {
+    "endpoint": "http://localhost:3000/api/usuarios/{usuario_id}",
+    "metodo": "GET",
+    "descripcion": "Obtener usuario por ID",
+    "body_request": null,
+    "body_response": {
+      "id": 0,
+      "nombre": "string",
+      "correo": "string",
+      "fecha_registro": "string"
+    },
+    "errores": {"404": "Usuario no encontrado", "422": "Error de validación"}
+  },
+  {
+    "endpoint": "http://localhost:3000/api/usuarios/{usuario_id}",
+    "metodo": "PUT",
+    "descripcion": "Actualizar usuario",
+    "body_request": {
+      "nombre": "string",
+      "correo": "string"
+    },
+    "body_response": {
+      "id": 0,
+      "nombre": "string",
+      "correo": "string",
+      "fecha_registro": "string"
+    },
+    "errores": {"404": "Usuario no encontrado", "422": "Error de validación"}
+  },
+  {
+    "endpoint": "http://localhost:3000/api/usuarios/{usuario_id}",
+    "metodo": "DELETE",
+    "descripcion": "Eliminar usuario",
+    "body_request": null,
+    "body_response": {
+      "mensaje": "string",
+      "exito": true
+    },
+    "errores": {"404": "Usuario no encontrado", "422": "Error de validación"}
+  },
+  {
+    "endpoint": "http://localhost:3000/api/usuarios/{usuario_id}/existe",
+    "metodo": "GET",
+    "descripcion": "Verificar si existe usuario",
+    "body_request": null,
+    "body_response": {"existe": true},
+    "errores": {"404": "Usuario no encontrado", "422": "Error de validación"}
+  },
+  {
+    "endpoint": "http://localhost:3000/api/usuarios/buscar/por-correo",
+    "metodo": "GET",
+    "descripcion": "Buscar usuario por correo",
+    "query_params": ["correo"],
+    "body_request": null,
+    "body_response": {
+      "id": 0,
+      "nombre": "string",
+      "correo": "string",
+      "fecha_registro": "string"
+    },
+    "errores": {"404": "Usuario no encontrado", "422": "Error de validación"}
+  },
+  {
+    "endpoint": "http://localhost:3000/api/usuarios/estadisticas/resumen",
+    "metodo": "GET",
+    "descripcion": "Estadísticas de usuarios",
+    "body_request": null,
+    "body_response": {},
+    "errores": {"404": "Usuario no encontrado", "422": "Error de validación"}
+  },
+  {
+    "endpoint": "http://localhost:3000/api/canciones/",
+    "metodo": "GET",
+    "descripcion": "Listar canciones con paginación y filtros",
+    "query_params": ["skip", "limit", "genero", "artista", "año_min", "año_max"],
+    "body_request": null,
+    "body_response": {
+      "items": [],
+      "total": 0,
+      "page": 1,
+      "size": 100,
+      "pages": 0
+    },
+    "errores": {"404": "Canción no encontrada", "422": "Error de validación"}
+  },
+  {
+    "endpoint": "http://localhost:3000/api/canciones/",
+    "metodo": "POST",
+    "descripcion": "Crear canción",
+    "body_request": {
+      "titulo": "string",
+      "artista": "string",
+      "album": "string",
+      "duracion": 0,
+      "año": 2024,
+      "genero": "string"
+    },
+    "body_response": {
+      "id": 0,
+      "titulo": "string",
+      "artista": "string",
+      "album": "string",
+      "duracion": 0,
+      "año": 2024,
+      "genero": "string",
+      "fecha_creacion": "string"
+    },
+    "errores": {"404": "Canción no encontrada", "422": "Error de validación"}
+  },
+  {
+    "endpoint": "http://localhost:3000/api/canciones/{cancion_id}",
+    "metodo": "GET",
+    "descripcion": "Obtener canción por ID",
+    "body_request": null,
+    "body_response": {
+      "id": 0,
+      "titulo": "string",
+      "artista": "string",
+      "album": "string",
+      "duracion": 0,
+      "año": 2024,
+      "genero": "string",
+      "fecha_creacion": "string"
+    },
+    "errores": {"404": "Canción no encontrada", "422": "Error de validación"}
+  },
+  {
+    "endpoint": "http://localhost:3000/api/canciones/{cancion_id}",
+    "metodo": "PUT",
+    "descripcion": "Actualizar canción",
+    "body_request": {
+      "titulo": "string",
+      "artista": "string",
+      "album": "string",
+      "duracion": 0,
+      "año": 2024,
+      "genero": "string"
+    },
+    "body_response": {
+      "id": 0,
+      "titulo": "string",
+      "artista": "string",
+      "album": "string",
+      "duracion": 0,
+      "año": 2024,
+      "genero": "string",
+      "fecha_creacion": "string"
+    },
+    "errores": {"404": "Canción no encontrada", "422": "Error de validación"}
+  },
+  {
+    "endpoint": "http://localhost:3000/api/canciones/{cancion_id}",
+    "metodo": "DELETE",
+    "descripcion": "Eliminar canción",
+    "body_request": null,
+    "body_response": {
+      "mensaje": "string",
+      "exito": true
+    },
+    "errores": {"404": "Canción no encontrada", "422": "Error de validación"}
+  },
+  {
+    "endpoint": "http://localhost:3000/api/canciones/buscar/avanzada",
+    "metodo": "GET",
+    "descripcion": "Búsqueda avanzada de canciones",
+    "query_params": ["titulo", "artista", "genero", "año"],
+    "body_request": null,
+    "body_response": [],
+    "errores": {"404": "Canción no encontrada", "422": "Error de validación"}
+  },
+  {
+    "endpoint": "http://localhost:3000/api/canciones/generos/lista",
+    "metodo": "GET",
+    "descripcion": "Listar géneros disponibles",
+    "body_request": null,
+    "body_response": [],
+    "errores": {"404": "Canción no encontrada", "422": "Error de validación"}
+  },
+  {
+    "endpoint": "http://localhost:3000/api/canciones/artistas/lista",
+    "metodo": "GET",
+    "descripcion": "Listar artistas disponibles",
+    "body_request": null,
+    "body_response": [],
+    "errores": {"404": "Canción no encontrada", "422": "Error de validación"}
+  },
+  {
+    "endpoint": "http://localhost:3000/api/canciones/estadisticas/resumen",
+    "metodo": "GET",
+    "descripcion": "Estadísticas de canciones",
+    "body_request": null,
+    "body_response": {},
+    "errores": {"404": "Canción no encontrada", "422": "Error de validación"}
+  },
+  {
+    "endpoint": "http://localhost:3000/api/favoritos/",
+    "metodo": "GET",
+    "descripcion": "Listar favoritos con paginación",
+    "query_params": ["skip", "limit"],
+    "body_request": null,
+    "body_response": {
+      "items": [],
+      "total": 0,
+      "page": 1,
+      "size": 100,
+      "pages": 0
+    },
+    "errores": {"404": "Favorito no encontrado", "422": "Error de validación"}
+  },
+  {
+    "endpoint": "http://localhost:3000/api/favoritos/",
+    "metodo": "POST",
+    "descripcion": "Marcar favorito",
+    "body_request": {
+      "id_usuario": 0,
+      "id_cancion": 0
+    },
+    "body_response": {
+      "id": 0,
+      "id_usuario": 0,
+      "id_cancion": 0,
+      "fecha_marcado": "string"
+    },
+    "errores": {"404": "Favorito no encontrado", "422": "Error de validación"}
+  },
+  {
+    "endpoint": "http://localhost:3000/api/favoritos/{favorito_id}",
+    "metodo": "GET",
+    "descripcion": "Obtener favorito por ID",
+    "body_request": null,
+    "body_response": {
+      "id": 0,
+      "id_usuario": 0,
+      "id_cancion": 0,
+      "fecha_marcado": "string",
+      "usuario": {},
+      "cancion": {}
+    },
+    "errores": {"404": "Favorito no encontrado", "422": "Error de validación"}
+  },
+  {
+    "endpoint": "http://localhost:3000/api/favoritos/{favorito_id}",
+    "metodo": "DELETE",
+    "descripcion": "Quitar favorito",
+    "body_request": null,
+    "body_response": {
+      "mensaje": "string",
+      "exito": true
+    },
+    "errores": {"404": "Favorito no encontrado", "422": "Error de validación"}
+  },
+  {
+    "endpoint": "http://localhost:3000/api/favoritos/usuario/{usuario_id}",
+    "metodo": "GET",
+    "descripcion": "Obtener favoritos de usuario",
+    "query_params": ["skip", "limit"],
+    "body_request": null,
+    "body_response": [],
+    "errores": {"404": "Favorito no encontrado", "422": "Error de validación"}
+  },
+  {
+    "endpoint": "http://localhost:3000/api/favoritos/usuario/{usuario_id}/cancion/{cancion_id}",
+    "metodo": "POST",
+    "descripcion": "Marcar favorito directo",
+    "body_request": null,
+    "body_response": {
+      "id": 0,
+      "id_usuario": 0,
+      "id_cancion": 0,
+      "fecha_marcado": "string"
+    },
+    "errores": {"404": "Favorito no encontrado", "422": "Error de validación"}
+  },
+  {
+    "endpoint": "http://localhost:3000/api/favoritos/usuario/{usuario_id}/cancion/{cancion_id}",
+    "metodo": "DELETE",
+    "descripcion": "Quitar favorito directo",
+    "body_request": null,
+    "body_response": {
+      "mensaje": "string",
+      "exito": true
+    },
+    "errores": {"404": "Favorito no encontrado", "422": "Error de validación"}
+  },
+  {
+    "endpoint": "http://localhost:3000/api/favoritos/verificar/{usuario_id}/{cancion_id}",
+    "metodo": "GET",
+    "descripcion": "Verificar si es favorito",
+    "body_request": null,
+    "body_response": {"es_favorito": true},
+    "errores": {"404": "Favorito no encontrado", "422": "Error de validación"}
+  },
+  {
+    "endpoint": "http://localhost:3000/api/favoritos/estadisticas/resumen",
+    "metodo": "GET",
+    "descripcion": "Estadísticas de favoritos",
+    "body_request": null,
+    "body_response": {},
+    "errores": {"404": "Favorito no encontrado", "422": "Error de validación"}
+  },
+  {
+    "endpoint": "http://localhost:3000/",
+    "metodo": "GET",
+    "descripcion": "Frontend de la aplicación",
+    "body_request": null,
+    "body_response": {},
+    "errores": {}
+  },
+  {
+    "endpoint": "http://localhost:3000/api",
+    "metodo": "GET",
+    "descripcion": "Información de la API",
+    "body_request": null,
+    "body_response": {},
+    "errores": {}
+  },
+  {
+    "endpoint": "http://localhost:3000/health",
+    "metodo": "GET",
+    "descripcion": "Health check",
+    "body_request": null,
+    "body_response": {"status": "healthy"},
+    "errores": {}
+  },
+  {
+    "endpoint": "http://localhost:3000/stats",
+    "metodo": "GET",
+    "descripcion": "Estadísticas de la BD",
+    "body_request": null,
+    "body_response": {},
+    "errores": {}
+  },
+  {
+    "endpoint": "http://localhost:3000/info/desarrollador",
+    "metodo": "GET",
+    "descripcion": "Info del desarrollador",
+    "body_request": null,
+    "body_response": {},
+    "errores": {}
+  }
+]

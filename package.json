@@ -1,0 +1,30 @@
+{
+  "name": "lpa2-taller4-root",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Proyecto Frontend + Backend API de Música - Isabella Ramirez Franco",
+  "author": "Isabella Ramirez Franco <isabella315784@gmail.com>",
+  "scripts": {
+    "prepare": "husky",
+    "frontend:dev": "cd frontend && pnpm dev",
+    "frontend:build": "cd frontend && pnpm build",
+    "frontend:test": "cd frontend && pnpm test",
+    "api:test": "cd tests_api && pytest -v",
+    "docs:serve": "mkdocs serve",
+    "docs:build": "mkdocs build",
+    "docs:deploy": "mkdocs gh-deploy"
+  },
+  "devDependencies": {
+    "husky": "^9.0.11",
+    "lint-staged": "^15.2.2"
+  },
+  "lint-staged": {
+    "frontend/**/*.{ts,tsx}": [
+      "cd frontend && pnpm lint --fix"
+    ],
+    "tests_api/**/*.py": [
+      "cd tests_api && python -m black .",
+      "cd tests_api && python -m isort ."
+    ]
+  }
+}
