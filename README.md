@@ -8,7 +8,7 @@ Email: isabella315784@gmail.com
 
 ---
 
-## 📖 Documentación
+## Documentación
 
 **Documentación completa en línea:** [https://codebell-alt.github.io/lpa2-taller4](https://codebell-alt.github.io/lpa2-taller4)
 
@@ -170,24 +170,6 @@ mkdocs build
 mkdocs gh-deploy
 ```
 
-## Configuración de Git
-
-Este proyecto usa el usuario de Isabella Ramirez Franco. Para configurar Git:
-
-```bash
-# Limpiar configuración previa
-git config --global --unset-all user.name
-git config --global --unset-all user.email
-
-# Configurar usuario
-git config --global user.name "codebell-alt"
-git config --global user.email "isabella315784@gmail.com"
-
-# Verificar
-git config --global user.name
-git config --global user.email
-```
-
 ## Commits con Conventional Commits
 
 El proyecto usa Conventional Commits. Formato:
@@ -210,24 +192,6 @@ tipo(scope): descripción
 - `build`: Cambios en build
 - `revert`: Revertir cambios
 
-### Ejemplos
-
-```bash
-git commit -m "feat: agregar módulo de estadísticas"
-git commit -m "fix: corregir paginación en usuarios"
-git commit -m "docs: actualizar guía de instalación"
-git commit -m "test: agregar pruebas para hook useUsuarios"
-```
-
-## Pre-commits
-
-Los pre-commits están configurados con Husky y ejecutan automáticamente:
-
-- Linting del código frontend
-- Formateo de código Python (black, isort)
-- Validación de formato de commits
-
-Los hooks se ejecutan automáticamente al hacer commit. Si hay errores, el commit será rechazado.
 
 ## Endpoints principales
 
@@ -264,7 +228,6 @@ Los hooks se ejecutan automáticamente al hacer commit. Si hay errores, el commi
 ### Otros
 - `GET /health` - Health check
 - `GET /stats` - Estadísticas de la BD
-- `GET /info/desarrollador` - Info del desarrollador
 
 Ver documentación completa en `/docs` o en [GitHub Pages](https://codebell-alt.github.io/lpa2-taller4/)
 
@@ -384,23 +347,7 @@ Para documentación detallada, visita:
 - [Despliegue](https://codebell-alt.github.io/lpa2-taller4/despliegue/)
 - [Contribución](https://codebell-alt.github.io/lpa2-taller4/contribucion/)
 
-## Licencia
 
-Este proyecto es parte del curso de Laboratorio de Programación Aplicada 2.
-
-## Contacto
-
-**Isabella Ramirez Franco**  
-Email: isabella315784@gmail.com  
-GitHub: [@codebell-alt](https://github.com/codebell-alt)
-
----
-
-**Desarrollado con dedicación por Isabella Ramirez Franco**  
-        - Optimiza el rendimiento (ej: caching, lazy loading)  
-        - [ESPECIFICA: Validaciones de datos necesarias]
-
-    ---
 
 ## Generar y Descargar el Código
 
